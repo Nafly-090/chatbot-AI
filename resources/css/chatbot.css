@@ -1,0 +1,274 @@
+/* resources/css/chatbot.css */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #007cba 0%, #005a87 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.header p {
+    opacity: 0.9;
+    font-size: 1.1em;
+}
+
+/* Form Styles */
+.form-section {
+    padding: 40px;
+    background: #f8f9fa;
+}
+
+.form-section h2 {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+label { 
+    font-weight: 600; 
+    display: block; 
+    margin-bottom: 8px; 
+    color: #333;
+    font-size: 1.1em;
+}
+
+textarea { 
+    width: 100%; 
+    height: 120px; 
+    padding: 15px; 
+    border: 2px solid #e1e5e9; 
+    border-radius: 8px; 
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 0 3px rgba(0, 124, 186, 0.1);
+}
+
+textarea::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Button Styles */
+.btn {
+    background: linear-gradient(135deg, #007cba 0%, #005a87 100%);
+    color: white; 
+    padding: 12px 30px; 
+    border: none; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover { 
+    background: linear-gradient(135deg, #005a87 0%, #003d5b 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 124, 186, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Response Section */
+.response-section {
+    padding: 40px;
+    background: white;
+}
+
+.response-section h2 {
+    color: #007cba;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #e1e5e9;
+    padding-bottom: 10px;
+}
+
+/* Response Container */
+#response { 
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 20px;
+    line-height: 1.7;
+}
+
+/* Typography Enhancements */
+#response strong {
+    color: #007cba;
+    font-weight: 600;
+}
+
+#response h3 {
+    color: #333;
+    margin: 20px 0 10px 0;
+    font-size: 1.3em;
+    border-left: 4px solid #007cba;
+    padding-left: 15px;
+}
+
+/* List Styles */
+#response ul { 
+    margin: 15px 0 20px 20px; 
+    padding-left: 0;
+}
+
+#response li { 
+    margin: 8px 0; 
+    padding: 5px 0;
+    position: relative;
+    padding-left: 25px;
+}
+
+#response li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #007cba;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Icons and Emojis */
+.advice-section::before {
+    content: "💡";
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.duration-section::before {
+    content: "⏱️";
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.features-section::before {
+    content: "✨";
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.tech-section::before {
+    content: "🔧";
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.budget-section::before {
+    content: "💰";
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.terms-section::before {
+    content: "📋";
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.summary-section::before {
+    content: "📝";
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.questions-section::before {
+    content: "❓";
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2em;
+    }
+    
+    .form-section, .response-section {
+        padding: 20px;
+    }
+    
+    textarea {
+        height: 100px;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007cba;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success Message */
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #c3e6cb;
+    margin-bottom: 20px;
+}
