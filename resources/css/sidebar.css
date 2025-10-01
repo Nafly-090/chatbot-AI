@@ -1,0 +1,167 @@
+/* resources/css/sidebar.css */
+
+.sidebar {
+    background-color: #202124;
+    color: #e8eaed;
+    width: 220px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+}
+
+.sidebar-header {
+    padding: 8px 4px;
+    margin-bottom: 12px;
+}
+
+.sidebar-logo {
+    font-size: 17.8px;
+    font-weight: 500;
+    color: #e8eaed;
+    text-decoration: none;
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.sidebar-nav::-webkit-scrollbar {
+    display: none;
+}
+
+
+.nav-section {
+    margin-bottom: 12px;
+}
+
+.nav-section-header {
+    background: none;
+    border: none;
+    color: #bdc1c6;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-section-header:hover {
+    color: #e8eaed;
+}
+.nav-section-header .chevron {
+    transition: transform 0.2s ease-in-out;
+}
+.nav-section-header[aria-expanded="false"] .chevron {
+    transform: rotate(-90deg);
+}
+
+.nav-submenu {
+    list-style: none;
+    padding-left: 8px;
+    margin-top: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e8eaed;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.nav-link:hover {
+    background-color: #3c4043;
+}
+.nav-link.active {
+    background-color: #303134;
+    color: #fff;
+}
+.nav-link svg {
+    flex-shrink: 0;
+}
+.documentation-link {
+    justify-content: space-between;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 11px;
+    border-top: 1px solid #3c4043;
+}
+
+.footer-note {
+    font-size: 12px;
+    color: #9aa0a6;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.api-key-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 9px;
+    border-radius: 20px;
+    background-color: #3c4043;
+    color: #e8eaed;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-bottom: 4px;
+    transition: background-color 0.2s ease;
+}
+.api-key-btn:hover {
+    background-color: #4a4d50;
+}
+.sidebar-footer .nav-link {
+    margin-bottom: 2px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+}
+.user-profile:hover {
+    background-color: #3c4043;
+}
+.user-profile .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #764ba2; /* Using a color from your chatbot */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+.user-profile span {
+    font-size: 14px;
+    color: #bdc1c6;
+}
+
+.h6e {
+    font-size: 12px;
+    color: #9aa0a6;
+    margin-top: 2px;
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+}

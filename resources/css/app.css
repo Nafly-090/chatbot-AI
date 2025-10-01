@@ -9,3 +9,44 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* resources/css/app.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.main-content {
+    flex-grow: 1; /* This makes it take up the remaining space */
+    height: 100vh;
+    overflow-y: auto; /* Allows content to scroll if it's too long */
+}
+
+
+.app-layout {
+    display: flex;
+    height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+}
+
+.main-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.content-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex; /* This helps center the welcome message */
+    justify-content: center;
+    align-items: flex-start; /* Aligns chat to top, welcome message aligns center */
+    padding: 24px;
+}
