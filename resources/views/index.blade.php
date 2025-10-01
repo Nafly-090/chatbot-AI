@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <div class="chat-area-wrapper">
         <!-- Messages -->
         <div class="messages-container" id="messages-container">
             @if(empty($conversation))
@@ -46,6 +46,8 @@
                 @endforeach
             @endif
         </div>
+         @include('prompt-bar')
+    </div>
 
     <!-- CRITICAL: ALL JAVASCRIPT INSIDE BLADE PROCESSING -->
     <script>
@@ -233,6 +235,23 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM Ready');
             new ChatInterface();
+
+            // --- START: ADD THIS NEW RESPONSIVE JAVASCRIPT ---
+            const menuToggleBtn = document.getElementById('menu-toggle-btn');
+            const sidebar = document.querySelector('.sidebar');
+            const backdrop = document.getElementById('sidebar-backdrop');
+            const body = document.body;
+
+            if (menuToggleBtn && sidebar) {
+                menuToggleBtn.addEventListener('click', () => {
+                    body.classList.toggle('sidebar-visible');
+                });
+
+                backdrop.addEventListener('click', () => {
+                    body.classList.remove('sidebar-visible');
+                });
+            }
+            // --- END: NEW RESPONSIVE JAVASCRIPT ---
         });
     </script>
 

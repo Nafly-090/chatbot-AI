@@ -1,104 +1,292 @@
 /* resources/css/chatbot.css */
 
-/* Main Header Styles */
-.main-header {
-    background: linear-gradient(105deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 20px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0; /* Prevents header from shrinking */
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-.header-title { font-size: 24px; font-weight: 600; margin-bottom: 2px; }
-.header-subtitle { opacity: 0.9; font-size: 14px; margin: 0; }
-.header-avatar { 
-    width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.15); 
-    display: flex; align-items: center; justify-content: center; 
-}
-
-/* Messages container now takes full width */
-.messages-container { 
+/* This new wrapper centers the content and holds the prompt bar at the bottom */
+.chat-area-wrapper {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Updated Welcome Message */
+/* Messages container now grows to fill the space */
+.messages-container { 
+    flex-grow: 1;
+    padding-bottom: 120px; /* Add space at the bottom for the floating prompt */
+}
+
+/* Redesigned Welcome Message */
 .welcome-message { 
     text-align: center; 
-    padding: 80px 40px; 
-    color: #6b7280; 
-    width: 100%;
-    margin-top: 5%;
+    padding: 60px 40px; 
+    margin-top: 10%;
 }
-.welcome-message h2 { font-size: 32px; margin-bottom: 12px; color: #1f2937; font-weight: 600; }
-.welcome-message p { max-width: 500px; margin: 0 auto 32px; line-height: 1.6; font-size: 16px; }
+.welcome-message h2 { font-size: 36px; margin-bottom: 16px; color: var(--color-text-primary); font-weight: 700; }
+.welcome-message p { max-width: 500px; margin: 0 auto 40px; line-height: 1.6; font-size: 18px; color: var(--color-text-secondary); }
 .examples { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 
-/* New Example Button Style */
+/* Attractive Example Buttons */
 .example-btn { 
-    background-color: #f8fafc;
-    color: #475569; 
-    border: 1px solid #e2e8f0; 
-    padding: 10px 20px; 
-    border-radius: 20px; 
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer; 
-    transition: all 0.2s ease; 
+    background-color: var(--color-bg-medium);
+    color: var(--color-text-secondary); 
+    border: 1px solid var(--color-border); 
+    padding: 12px 24px; border-radius: 25px; 
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s ease; 
 }
 .example-btn:hover { 
-    border-color: #cbd5e1;
-    background-color: #f1f5f9;
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    color: var(--color-text-primary);
+    border-color: var(--color-accent);
+    transform: translateY(-3px); 
+    box-shadow: 0 0 20px var(--color-accent-glow);
 }
 
-/* Chat Message Styles (Mostly Unchanged) */
-.message { margin-bottom: 20px; display: flex; }
+/* Polished Chat Message Styles */
+.message { margin-bottom: 24px; display: flex; }
 .message.user { justify-content: flex-end; }
 .message.ai { justify-content: flex-start; }
-.message-content { max-width: 75%; padding: 16px 20px; border-radius: 18px; word-wrap: break-word; line-height: 1.6; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-.message.user .message-content { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-bottom-right-radius: 4px; }
-.message.ai .message-content { background: white; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; }
-.message-meta { font-size: 12px; opacity: 0.7; margin-top: 8px; display: flex; align-items: center; gap: 8px; }
-.message.user .message-meta { justify-content: flex-end; color: rgba(255,255,255,0.8); }
-
-/* Typing Indicator (Unchanged) */
-.typing-indicator { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: white; border-radius: 18px; border: 1px solid #e2e8f0; max-width: 70%; border-bottom-left-radius: 4px; }
-.typing-dots { display: flex; gap: 4px; }
-.typing-dots span { width: 8px; height: 8px; border-radius: 50%; background: #cbd5e0; animation: typing 1.4s infinite ease-in-out; }
-.typing-dots span:nth-child(1) { animation-delay: -0.32s; }
-.typing-dots span:nth-child(2) { animation-delay: -0.16s; }
-@keyframes typing { 0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
-
-
-/* Prompt Bar Styles (Mostly Unchanged - just the wrapper) */
-.prompt-container-wrapper {
-    padding: 16px 24px;
-    background: #fff;
-    border-top: 1px solid #e2e8f0;
-    flex-shrink: 0; /* Prevents input bar from shrinking */
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
+.message-content { 
+    max-width: 75%; padding: 16px 20px; border-radius: 20px; 
+    word-wrap: break-word; line-height: 1.6;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+/* User Message Bubble */
+.message.user .message-content { 
+    background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 100%);
+    color: #ffffff;
+    font-weight: 500;
+    border-bottom-right-radius: 6px; 
+}
+/* AI Message Bubble */
+.message.ai .message-content { 
+    background: var(--color-bg-medium);
+    border: 1px solid var(--color-border);
+    border-bottom-left-radius: 6px; 
+    padding: 20px 24px;
+    font-size: 16px;
+    line-height: 1.7; 
+    color: #D1D5DB; 
+}
+
+.message.ai .message-content p { margin-bottom: 1.2em; }
+.message.ai .message-content p:last-child { margin-bottom: 0; }
+
+/* Prepare lists */
+.message.ai .message-content ol,
+.message.ai .message-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.2em 0;
+}
+.message.ai .message-content ol {
+    counter-reset: custom-list-counter;
+}
+
+/* Style for all list items */
+.message.ai .message-content li {
+    position: relative;
+    padding-left: 35px; /* Create space for our custom marker */
+    margin-bottom: 1.2em;
+}
+
+/* Custom marker for UNORDERED lists (bullets) */
+.message.ai .message-content ul > li::before {
+    content: '•';
+    position: absolute;
+    left: 10px; top: -2px;
+    color: var(--color-accent);
+    font-size: 1.5em; font-weight: bold;
+}
+
+/* Custom marker for ORDERED lists (numbers + bullet) */
+.message.ai .message-content ol > li::before {
+    counter-increment: custom-list-counter;
+    content: counter(custom-list-counter) "."; /* Just the number and dot */
+    position: absolute;
+    left: 0; top: 1px;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 16px;
+    width: 20px; /* Align numbers neatly */
+    text-align: right;
+}
+
+/* --- THIS IS THE KEY: ACCENT COLOR FOR BOLD TEXT --- */
+.message.ai .message-content strong,
+.message.ai .message-content b { 
+    color: var(--color-accent); /* Make ALL bold text use the accent color */
+    font-weight: 600; 
+}
+
+/* Code block styles */
+.message.ai .message-content code { background-color: var(--color-bg-dark); border: 1px solid var(--color-border); border-radius: 4px; padding: 2px 6px; font-size: 14px; color: #FBCFE8; }
+.message.ai .message-content pre { background-color: #0d1117; border: 1px solid var(--color-border); padding: 16px; border-radius: 8px; margin: 1.5em 0; }
+
+/* Keep other formatting styles for emphasis and code */
+
+.message.ai .message-content code { 
+    background-color: var(--color-bg-dark); 
+    border: 1px solid var(--color-border); 
+    border-radius: 4px; 
+    padding: 2px 6px; 
+    font-size: 14px; 
+    color: #FBCFE8; /* A nice color for inline code */
+}
+
+.message.ai .message-content pre { 
+    background-color: #0d1117; 
+    border: 1px solid var(--color-border); 
+    padding: 16px; 
+    border-radius: 8px; 
+    margin: 1.5em 0; 
+}
+.message-meta { font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 8px; color: var(--color-text-secondary); }
+.message.user .message-meta { justify-content: flex-end; color: #ffffff; opacity: 0.8; }
+.message.ai .message-meta { justify-content: flex-start; }
+
+/* --- NEW FLOATING PROMPT BAR --- */
+.prompt-container-wrapper {
+    position: sticky;
+    bottom: 10px; 
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding-bottom: 10px; 
+}
+
+/* This is the main container with the new "frosted glass" effect */
 .prompt-container {
     max-width: 900px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     gap: 12px;
-    background-color: #303134;
+    
+    /* --- The Magic Starts Here --- */
+    /* 1. Semi-transparent background */
+    background-color: var(--color-bg-medium);
+    
+    /* 2. The blur effect */
+    -webkit-backdrop-filter: blur(12px); /* For Safari */
+    backdrop-filter: blur(12px);
+    
+    /* 3. Subtle border and glow */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* A deeper shadow for more "pop" */
+
     padding: 10px 12px 10px 24px;
     border-radius: 28px;
-    border: 1px solid #4a4d50;
 }
-.prompt-input { flex-grow: 1; background: transparent; border: none; outline: none; color: #e8eaed; font-family: 'Inter', sans-serif; font-size: 16px; resize: none; line-height: 1.5; max-height: 120px; }
-.prompt-input::placeholder { color: #9aa0a6; opacity: 1; }
-.prompt-button { background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; color: #9aa0a6; transition: color 0.2s ease; }
-.prompt-button:hover { color: #e8eaed; }
-.run-button { display: flex; align-items: center; gap: 8px; background-color: #3c4043; color: #e8eaed; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 20px; border: 1px solid #5f6368; cursor: pointer; transition: background-color 0.2s ease; }
-.run-button:hover:not(:disabled) { background-color: #4a4d50; }
-.run-button:disabled { opacity: 0.5; cursor: not-allowed; }
-.run-shortcut { font-size: 12px; color: #9aa0a6; }
+
+.prompt-container:hover { 
+    color: var(--color-text-primary);
+    border-color: var(--color-accent);
+    transform: translateY(-3px); 
+    box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+/* Input field styling (mostly unchanged) */
+.prompt-input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    resize: none;
+    line-height: 1.5;
+    max-height: 150px;
+}
+.prompt-input::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 1;
+}
+
+/* General button styling */
+.prompt-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    transition: all 0.2s ease;
+}
+.prompt-button:hover {
+    color: var(--color-text-primary);
+}
+
+/* The circular "+" button */
+.add-context-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.add-context-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* The "Run" button */
+.run-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--color-bg-medium);
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 25px; /* Slightly less rounded */
+    border: 1px solid #5f6368;
+}
+.run-button:hover:not(:disabled) {
+    background-color: #4a4d50;
+    border-color: #7d8287;
+}
+.run-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.run-shortcut {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+}
+
+
+@media (max-width: 768px) {
+    /* Reduce padding on the main content area for mobile */
+    .content-area {
+        padding: 70px 16px 16px 16px;
+    }
+
+    /* Make the welcome message text smaller */
+    .welcome-message h2 {
+        font-size: 28px;
+    }
+    .welcome-message p {
+        font-size: 16px;
+    }
+
+    /* Give chat bubbles more width on narrow screens */
+    .message-content {
+        max-width: 85%;
+    }
+
+    /* Adjust the floating prompt bar's position and hide the keyboard shortcut */
+    .prompt-container-wrapper {
+        bottom: 10px;
+    }
+    .prompt-container {
+        padding: 8px 10px 8px 16px;
+    }
+    .run-shortcut {
+        display: none; /* Hide "Ctrl <-" on mobile */
+    }
+}

@@ -17,21 +17,24 @@
 
     @include('sidebar')
 
-    <!-- New main content wrapper -->
     <div class="main-content-wrapper">
-        
-        @include('main-header')
+
+        <div class="mobile-header">
+            <button id="menu-toggle-btn" class="menu-toggle-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <div class="mobile-header-title">CodeCraft AI</div>
+        </div>
 
         <!-- Main content area for chat/welcome message -->
         <main class="content-area">
             @yield('content')
         </main>
 
-        <!-- Include the prompt bar at the bottom -->
-        @include('prompt-bar')
-
     </div>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
+    
     <script>
         document.querySelectorAll('.nav-section-header').forEach(header => {
             header.addEventListener('click', () => {

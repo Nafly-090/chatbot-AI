@@ -1,38 +1,25 @@
-@import 'tailwindcss';
-
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
-
 /* resources/css/app.css */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-    font-family: 'Inter', sans-serif;
+:root {
+    --color-bg-dark: #111827;      
+    --color-bg-medium: #1F2937;    
+    --color-border: #374151;       
+    --color-text-primary: #F9FAFB;   
+    --color-text-secondary: #9CA3AF; 
+    --color-accent: #22D3EE;        
+    --color-accent-glow: rgba(34, 211, 238, 0.2);
 }
-
-.main-content {
-    flex-grow: 1; /* This makes it take up the remaining space */
-    height: 100vh;
-    overflow-y: auto; /* Allows content to scroll if it's too long */
-}
-
 
 .app-layout {
     display: flex;
     height: 100vh;
-    background-color: #f8fafc;
     font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-primary);
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
+    background-size: 25px 25px;
+    overflow: hidden;
 }
 
 .main-content-wrapper {
@@ -40,13 +27,93 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    /* This transition ensures the main content also animates smoothly */
+    transition: margin-left 0.3s ease-in-out; 
 }
 
 .content-area {
     flex-grow: 1;
     overflow-y: auto;
-    display: flex; /* This helps center the welcome message */
-    justify-content: center;
-    align-items: flex-start; /* Aligns chat to top, welcome message aligns center */
+    position: relative;
     padding: 24px;
+}
+
+.content-area::-webkit-scrollbar { width: 8px; }
+.content-area::-webkit-scrollbar-track { background: transparent; }
+.content-area::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 4px; }
+.content-area::-webkit-scrollbar-thumb:hover { background-color: #4B5563; }
+
+.mobile-header { display: none; }
+.sidebar-backdrop { display: none; }
+
+/* --- CORRECTED Tablet and Mobile Styles --- */
+@media (max-width: 1024px) {
+    .app-layout {
+        /* Keep it as a flex container */
+    }
+
+    /* 1. Hide the sidebar with a negative margin */
+    .sidebar {
+        margin-left: -280px;
+        transition: margin-left 0.3s ease-in-out;
+    }
+    
+    /* 2. When the class is added, reset the margin to show it. */
+    /*    Flexbox will automatically push the main content over! */
+    body.sidebar-visible .sidebar {
+        margin-left: 0;
+    }
+
+    /* 3. REMOVED all absolute positioning and transforms from the main content. */
+    /*    It is now just a normal flex item. */
+    .main-content-wrapper {
+        /* No special positioning needed */
+    }
+
+    /* The backdrop now uses position: fixed to cover the entire screen */
+    .sidebar-backdrop {
+        display: block;
+        position: fixed; /* Changed from absolute to fixed */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999; /* Higher than header, lower than sidebar */
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    
+    body.sidebar-visible .sidebar-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        height: 60px;
+        background-color: var(--color-bg-medium);
+        border-bottom: 1px solid var(--color-border);
+        position: sticky; /* Sticky is better than fixed for this layout */
+        top: 0;
+        z-index: 900;
+    }
+    
+    .menu-toggle-btn {
+        background: none; border: none; color: var(--color-text-secondary);
+        padding: 8px; cursor: pointer;
+    }
+    .menu-toggle-btn:hover { color: var(--color-text-primary); }
+    .mobile-header-title {
+        flex-grow: 1; text-align: center;
+        font-weight: 600; color: var(--color-text-primary);
+    }
+    
+    /* No longer need extra padding because the header is sticky */
+    .content-area {
+        padding-top: 24px;
+    }
 }
