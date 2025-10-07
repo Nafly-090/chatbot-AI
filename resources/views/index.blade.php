@@ -46,7 +46,10 @@
                 @endforeach
             @endif
         </div>
+        
+       
          @include('prompt-bar')
+        <div class="chat-blur-gradient"></div>
     </div>
 
     <!-- CRITICAL: ALL JAVASCRIPT INSIDE BLADE PROCESSING -->
@@ -233,7 +236,6 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM Ready');
             new ChatInterface();
 
             // --- START: ADD THIS NEW RESPONSIVE JAVASCRIPT ---
@@ -251,9 +253,38 @@
                     body.classList.remove('sidebar-visible');
                 });
             }
+
+            const contentArea = document.querySelector('.content-area');
+
+            if (contentArea) {
+                contentArea.addEventListener('scroll', () => {
+                    // If scrolled more than 20px from the top, add the class
+                    if (contentArea.scrollTop > 20) {
+                        contentArea.classList.add('is-scrolled');
+                    } else {
+                        // Otherwise, remove it
+                        contentArea.classList.remove('is-scrolled');
+                    }
+                });
+            }
             // --- END: NEW RESPONSIVE JAVASCRIPT ---
         });
+
+
+        const blurLayer = document.querySelector('.chat-blur-gradient');
+        const chatContainer = document.querySelector('.messages-container');
+
+        chatContainer.addEventListener('scroll', () => {
+            const scrollBottom = chatContainer.scrollHeight - chatContainer.scrollTop - chatContainer.clientHeight;
+            const opacity = Math.max(0, Math.min(1, 1 - scrollBottom / 150)); // stronger blur near bottom
+            blurLayer.style.opacity = opacity;
+        });
+
     </script>
 
    
 @endsection 
+
+
+
+

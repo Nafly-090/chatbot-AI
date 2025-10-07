@@ -9,6 +9,7 @@
     padding: 16px;
     border-right: 1px solid var(--color-border);
     flex-shrink: 0;
+     z-index: 10;
 }
 
 .sidebar-header {

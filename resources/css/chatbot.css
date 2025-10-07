@@ -8,6 +8,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+
 }
 
 /* Messages container now grows to fill the space */
@@ -15,6 +16,37 @@
     flex-grow: 1;
     padding-bottom: 120px; /* Add space at the bottom for the floating prompt */
 }
+
+.chat-blur-gradient {
+    position: fixed;
+    bottom: 0px;
+    transform: translateX(-50%);
+    width: 1000vh;
+    height: 90px;
+    pointer-events: none;
+
+    /* Modern glass effect */
+    background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0.100),
+        rgba(255, 255, 255, 0.075),
+        rgba(255, 255, 255, 0.025),
+        transparent 
+    );
+    
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    /* Subtle glowing edges */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.062);
+
+    transition: all 0.4s ease;
+}
+
+
+
+
+
 
 /* Redesigned Welcome Message */
 .welcome-message { 
@@ -148,11 +180,12 @@
 /* --- NEW FLOATING PROMPT BAR --- */
 .prompt-container-wrapper {
     position: sticky;
-    bottom: 10px; 
+    bottom: 0px; 
     left: 0;
     width: 100%;
     z-index: 10;
-    padding-bottom: 10px; 
+    padding-bottom: 2px; 
+    
 }
 
 /* This is the main container with the new "frosted glass" effect */
@@ -163,15 +196,13 @@
     align-items: center;
     gap: 12px;
     
-    /* --- The Magic Starts Here --- */
-    /* 1. Semi-transparent background */
-    background-color: var(--color-bg-medium);
+
+    background-color: rgba(42, 44, 48, 0.7);
     
     /* 2. The blur effect */
-    -webkit-backdrop-filter: blur(12px); /* For Safari */
-    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px) saturate(180%); 
+    backdrop-filter: blur(12px) saturate(180%);
     
-    /* 3. Subtle border and glow */
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* A deeper shadow for more "pop" */
 
@@ -219,6 +250,7 @@
 .prompt-button:hover {
     color: var(--color-text-primary);
 }
+
 
 /* The circular "+" button */
 .add-context-btn {
