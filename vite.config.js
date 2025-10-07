@@ -6,6 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/chatbot.css',
+                'resources/css/sidebar.css',
                 'resources/css/app.css',
                 'resources/js/app.js'
                 ],
